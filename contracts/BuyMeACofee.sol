@@ -33,8 +33,37 @@ contract BuyMeACofee {
     *@param _name name of the cofee buyer
     *@param _message a msg from the cofee buyer (Memo)
     * */
-    // function buyCoffe(string memory _name, string memory _message) {
+    function buyCoffe(string memory _name, string memory _message) public payable {
+        require(msg.value > 0, "Takes more than 0 ETH to buy a coffe");
 
-    // }
+        //Add the memo to the array (store it)
+        memos.push(Memo(
+            msg.sender,
+            block.timestamp,
+            _name,
+            _message
+        ));
+
+        //Emit a log event when a new memo is created
+        emit NewMemo(msg.sender,
+            block.timestamp,
+            _name,
+            _message
+        );
+    }
+
+    /**
+    *@dev send the entire contract balance to the owner address
+    * */
+    function withdrawTips() public {
+        require(owner.send(address(this).balance));
+    }
+
+    /**
+    *@dev buy a coffe for the contract owner
+    * */
+    function getMemos() public view returns(Memo[] memory) {
+        return memos;
+    }
  
 }
