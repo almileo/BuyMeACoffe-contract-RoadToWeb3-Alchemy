@@ -33,7 +33,7 @@ contract BuyMeACofee {
     *@param _name name of the cofee buyer
     *@param _message a msg from the cofee buyer (Memo)
     * */
-    function buyCoffe(string memory _name, string memory _message) public payable {
+    function buyCoffee(string memory _name, string memory _message) public payable {
         require(msg.value > 0, "Takes more than 0 ETH to buy a coffe");
 
         //Add the memo to the array (store it)
@@ -45,7 +45,8 @@ contract BuyMeACofee {
         ));
 
         //Emit a log event when a new memo is created
-        emit NewMemo(msg.sender,
+        emit NewMemo(
+            msg.sender,
             block.timestamp,
             _name,
             _message
