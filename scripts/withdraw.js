@@ -1,5 +1,5 @@
 const hre = require("hardhat");
-const abi = require("../artifacts/contracts/BuyMeACoffee.sol/BuyMeACoffee.json");
+const abi = require("../artifacts/contracts/BuyMeACofee.sol/BuyMeACofee.json");
 
 async function getBalance(provider, address) {
   const balanceBigInt = await provider.getBalance(address);
